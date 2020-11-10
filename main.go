@@ -66,11 +66,15 @@ func update(screen *ebiten.Image) error {
 	}
 	op := &ebiten.DrawImageOptions{}
 	op.GeoM.Translate(0, 0)
-	screen.DrawImage(background, op)
+	if err := screen.DrawImage(background, op); err != nil {
+		log.Fatal(err)
+	}
 
 	playerOp := &ebiten.DrawImageOptions{}
 	playerOp.GeoM.Translate(playerOne.xPos, playerOne.yPos)
-	screen.DrawImage(playerOne.image, playerOp)
+	if err := screen.DrawImage(playerOne.image, playerOp); err != nil {
+		log.Fatal(err)
+	}
 
 	return nil
 }
